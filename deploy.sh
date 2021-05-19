@@ -1,6 +1,6 @@
 #! /bin/bash
 # deploy.sh
-mkdir -p /test
-cp Jenkins.class /test
-cd /test
+sudo mkdir -p /test1
+sudo cp helloWorld.class /test1
+sudo cd /test1
 java Jenkins
