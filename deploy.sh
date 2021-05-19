@@ -1,7 +1,6 @@
 #! /bin/bash
-# deploy.sh
-sudo mkdir -p /app
-chmod 764 /app
+# deploy sh
+mkdir -p /app
 cp helloWorld.class /app
 cd /app
 java helloWorld
