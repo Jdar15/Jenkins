@@ -2,5 +2,5 @@
 # deploy sh
 sudo mkdir -p /app
 sudo cp helloWorld.class /app
-cd /app
+sudo cd /app
 java helloWorld
