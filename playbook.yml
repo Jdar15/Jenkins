@@ -1,0 +1,29 @@
+
+---
+- name: Afficher Hello World
+  hosts: all
+  remote_user: root
+
+  become: yes
+  tasks:
+    - name: installation Java
+      shell: amazon-linux-extras install -y java-openjdk11
+      register: result_install
+    - debug:
+        var=result_install
+    - name: create a directory
+      file:
+        path: /app
+        state: directory
+        mode: '0777'
+        owner: ec2-user
+    - name: copy a local helloWorld.class to the remote /app
+      copy:
+        src: helloWorld.class
+        dest: /app
+        mode: 0644
+    - name: execute java helloWorld.class
+      shell: cd /app && java helloWorld
+      register: result
+    - debug:
+        var=result
