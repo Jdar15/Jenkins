@@ -16,10 +16,10 @@
         name: docker
         state: started
     - name: create a container
-       docker_container:
-         name: java
-         image: dockerfile
-         state: started
+      docker_container:
+        name: java
+        image: dockerfile
+        state: started
     - name: execute java helloWorld.class
       shell: java helloWorld
       register: result
