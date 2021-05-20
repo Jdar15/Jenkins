@@ -20,8 +20,3 @@
         name: java
         image: dockerfile
         state: started
-    - name: execute java helloWorld.class
-      shell: java helloWorld
-      register: result
-    - debug:
-      var=result
