@@ -1,0 +1,22 @@
+
+---
+- name: Afficher Hello World
+  hosts: all
+  remote_user: root
+
+  become: yes
+  tasks:
+    - name: installation Docker
+      shell: sudo amazon-linux-extras install docker
+      register: result_install
+    - debug:
+        var=result_install
+    - name: start docker service
+      servcice:
+        name: docker
+        state: started
+     - name: create a container
+       docker_container:
+         name: java
+         image: dockerfile
+         state: started
