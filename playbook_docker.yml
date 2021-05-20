@@ -21,7 +21,7 @@
         mode: 0644
     - name: copy a local dockerfile to the remote /app
       copy:
-        src: Dockefile
+        src: Dockerfile
         dest: /app
         mode: 0644
     - name: generate docker image
