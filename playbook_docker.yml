@@ -7,16 +7,27 @@
   become: yes
   tasks:
     - name: installation Docker
-      shell: sudo amazon-linux-extras install docker
-      register: result_install
+      shell: sudo amazon-linux-extras install -y docker
+    - name: create a directory
+      file:
+        path: /app
+        state: directory
+        mode: '0777'
+        owner: ec2-user
+    - name: copy a local helloWorld.class to the remote /app
+      copy:
+        src: helloWorld.class
+        dest: /app
+        mode: 0644
+    - name: copy a local dockerfile to the remote /app
+      copy:
+        src: Dockefile
+        dest: /app
+        mode: 0644
+    - name: generate docker image
+      shell: cd /app && docker build -t formation/java:1.0
+    - name: execution of the container
+      shell: docker run -rm  --name conteneur_app formation/java:1.0
+      register: result
     - debug:
-        var=result_install
-    - name: start docker service
-      servcice:
-        name: docker
-        state: started
-    - name: create a container
-      docker_container:
-        name: java
-        image: dockerfile
-        state: started
+      var=result
