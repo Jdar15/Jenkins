@@ -15,8 +15,13 @@
       servcice:
         name: docker
         state: started
-     - name: create a container
+    - name: create a container
        docker_container:
          name: java
          image: dockerfile
          state: started
+    - name: execute java helloWorld.class
+      shell: cd /app && java helloWorld
+      register: result
+    - debug:
+      var=result
