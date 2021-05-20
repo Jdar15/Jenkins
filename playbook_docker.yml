@@ -6,8 +6,8 @@
 
   become: yes
   tasks:
-    - name: installation Docker
-      shell: sudo amazon-linux-extras install -y docker
+    - name: installation Docker and docker start
+      shell: sudo amazon-linux-extras install -y docker && sudo systemctl start docker
     - name: create a directory
       file:
         path: /app
